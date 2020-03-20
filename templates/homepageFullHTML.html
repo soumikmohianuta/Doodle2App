@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Sketch to App : Enabling Pencil to Code.">
+    <title>Doodle 2 App</title>
+    
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <script src="../javascripts/FullSketchPad.js"></script>
+     <link href="../stylesheets/bootstrap.min.css" rel="stylesheet">
+
+      <!-- Custom CSS -->
+    <link href="/stylesheets/landing-page.css" rel="stylesheet">
+
+      <!-- Custom Fonts -->
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Muli:300' rel='stylesheet' type='text/css'>
+
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+    .myfont {
+    font-family: 'Muli';
+    font-weight: 200;
+    }
+    </style>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-64561447-1', 'auto');
+        ga('send', 'pageview');
+
+        </script>
+        
+
+    <style>
+      .sketchpad {
+        background: #FFF;
+        width: 100%;
+        height: 600px;
+        border-radius: 5px;
+        border-style: groove; 
+        Border-color: #D3D3D3
+
+      }
+        .code {
+        background: #FFF;
+        width: 500px;
+        height: 600px;
+        border-radius: 5px;
+        border-style: groove; 
+        Border-color: #D3D3D3
+
+      }
+        .NewWeb {
+        background: #FFF;
+        width: 100%;
+        height: 600px;
+        border-radius: 0px;
+        border-style: groove; 
+        Border-color: #D3D3D3
+
+      }
+
+
+    </style>
+    
+    <style>
+      .slider {
+        background: #FFF;
+        width: 100px;
+        height: 10px;
+      }
+    <style>
+    #redoUndo div {
+        display: inline;
+    margin: 0 1em 0 1em;
+    width: 30%;
+    }
+    </style>
+
+  </head>
+      <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+      <div class="container topnav">
+          <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+
+          <a class="navbar-brand topnav" href="/">pixeltoapp.com</a>
+        </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+
+          </ul>
+        </div>
+        </div>
+          <!-- /.navbar-collapse -->
+        <!-- /.container -->
+    </nav>
+
+    <div class="intro-header"  id="div_id_NormalHeader">
+            <h1>Doodle 2 UI Code</h1>
+            <h3 >Website recognizes </h3>
+            <p id="catergoryHeader"> Text (Squiggle line) </p>  
+    </div>
+
+        <!-- /.container -->
+        
+    <div class="content-section-a" id="div_id_drawing">
+      <div class="container">
+        <div class="row">
+            <div class="row"> 
+                 <h3><center> Press the ``z'' key or double-tapping the canvas to end drawing one UI element</center></h3>
+            </div>
+            
+            <div class="col-sm-6">
+
+               
+                <div class="row">
+                    <canvas class="sketchpad" id="sketchpad"><canvas>
+
+                </div>
+                <!--input class="slider" id="size-picker" type="range" min="1" max="50"-->
+                <div class="row">  
+                    <div class="col-sm-2" id="progressLabel">
+                        <p id="SketchProgress"> Start Drawing </p>  
+                    </div>
+                    
+                    <div class="col-sm-2" id="undoLabel">
+                        <button onclick="undo()" id ="undoButton"><img src="../images/undo.jpg" height="30" width="42"/></button>
+                        <p class="button-text">Undo Strokes</p>
+                    </div>
+                    
+                    <div class="col-sm-2" id="redoLabel">
+                        <button onclick="redo()"  id ="redoButton"><img src="../images/redo.jpg" height="30" width="42"/></button>
+                        <p class="button-text">Redo Strokes</p>
+                    </div>
+
+                    <div class="col-sm-2" id="animateLabel">
+                        <button onclick="removeIcon()" id="animateButton">Remove Last Element</button>
+                    </div>
+
+                    <div class="col-sm-2" id="androidcode">
+                        <a href="{{ url_for('sketchAndroidCode') }}"><button>Get Android Code</button></a>
+                    </div>
+
+                
+                    <div class="col-sm-2" id="saveLabel">
+                          <!--button onclick="generateCode()" id="saveButton" style="background-color:green;border:2px solid #336600;padding:3px" align="center">Generate Android Code</button-->    
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-6">
+              
+                <div class="row"> 
+
+                    <iframe id="codeFrame" class="NewWeb" src="newWeb" style="border:none;"></iframe>
+                </div>
+            </div>         
+        </div>
+      </div>
+    </div>
+    
+    <!-- FOOTER  -->
+   <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <ul class="list-inline">
+              <li class="footer-menu-divider">&sdot;</li>
+              <li>
+                <a href="https://goo.gl/forms/vDqSqRDqVK8JXxww1">Feedback</a>
+              </li>
+              <li>
+                <a href="https://github.com/soumikmohianuta/Doodle2App.git">Github Repository</a>
+              </li>             
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      var sketchpad;
+      var  sketchData = null ;
+      var sketchCount = 0;
+      var interValIDs = [];
+      var widthofSketchPad = document.getElementById('sketchpad').offsetWidth;
+   //   var sketchStack = [];
+      $(document).ready(function() {
+        sketchpad = new Sketchpad({
+          element: '#sketchpad',
+          width:  widthofSketchPad,
+          height: 600
+        });
+        $('#color-picker').change(color);
+        $('#color-picker').val('#000');
+        $('#size-picker').change(size);
+        $('#size-picker').val(0.5);
+      });
+      document.addEventListener( "keydown", doKeyDown, true);
+      
+      setInterval(headerTimer, 2000);
+      
+      // change header
+      function headerTimer(){
+            $.post("/DoodleHeaderText/", {save_data: sketchData }, function(err, req, resp){
+                      document.getElementById("catergoryHeader").innerText = resp["responseJSON"]["hText"];  
+                  
+            });        
+            
+      }
+      // handle mouse event
+      function mouseup1() {
+        
+            var  newsketchData = JSON.stringify(sketchpad.strokes)
+            if (newsketchData != sketchData  ){
+            sketchData = newsketchData;
+            $.post("/MidPredict/", {save_data: sketchData }, function(err, req, resp){
+                if (resp["responseJSON"]["predictedResult"] != "Unchanged" ){
+                      document.getElementById("SketchProgress").innerText = resp["responseJSON"]["predictedResult"];  
+                  }
+            });        
+            }
+             
+      }
+      
+      // For phone
+      	document.addEventListener("touchstart", tapHandler);
+
+    	var tapedTwice = false;
+    	
+    // handle mouse tap event
+    	function tapHandler(event) {
+        if(!tapedTwice) {
+            tapedTwice = true;
+            setTimeout( function() { tapedTwice = false; }, 300 );
+            return false;
+    		}
+    		event.preventDefault();
+        //action on double tap goes below
+    		doDoubleTap();
+    	}
+    	
+    	// handle z press button
+      function doKeyDown(e) {
+
+            if ( e.keyCode == 90 ) {
+            sketchpad.pustoStack();
+            var  newsketchData = JSON.stringify(sketchpad.strokes)
+            sketchData = newsketchData;
+            $.post("/DrawSave/", {save_data: sketchData }, function(err, req, resp){
+               if (resp["responseJSON"]["predictedResult"] != "Unchanged" ){
+                      document.getElementById("SketchProgress").innerHTML = resp["responseJSON"]["predictedResult"]; 
+                      document.getElementById("codeFrame").src ="newWeb/a" + new Date().getTime(); 
+                  }
+            });        
+             sketchpad.clearAll();
+             sketchpad.drawStrokes();
+
+            }
+
+        }
+        // handle remove event
+       function removeIcon() {
+            if(sketchpad.strokesStack.length>0){
+                 sketchpad.clearAll();
+                 sketchpad.strokesStack.pop();
+                 var  newsketchData = JSON.stringify(sketchpad.strokes)
+                $.post("/RemoveLastIcon/", {save_data: newsketchData }, function(err, req, resp){
+                    document.getElementById("SketchProgress").innerHTML = "Start Drawing"; 
+ 
+                    document.getElementById("codeFrame").src ="newWeb/a" + new Date().getTime();
+                     });      
+                    
+                sketchpad.drawStrokes();
+                  
+            }
+        }
+        // handle generation android code
+        
+        function genereateAndroid() {
+
+            sketchpad.pustoStack();
+            var  newsketchData = JSON.stringify(sketchpad.strokes)
+            sketchData = newsketchData;
+            $.post("/CreateAndroidProject/", {save_data: sketchData }, function(err, req, resp){
+               if (resp["responseJSON"]["predictedResult"] != "Unchanged" ){
+                      document.getElementById("SketchProgress").innerHTML = resp["responseJSON"]["predictedResult"]; 
+                      document.getElementById("codeFrame").src ="newWeb/a" + new Date().getTime(); 
+                  }
+            });        
+             sketchpad.clearStroke();
+
+        }
+    
+    
+    // handle double tap event
+
+      function doDoubleTap() {
+
+            sketchpad.pustoStack();
+            var  newsketchData = JSON.stringify(sketchpad.strokes)
+            sketchData = newsketchData;
+            $.post("/DrawSave/", {save_data: sketchData }, function(err, req, resp){
+               if (resp["responseJSON"]["predictedResult"] != "Unchanged" ){
+                      document.getElementById("SketchProgress").innerHTML = resp["responseJSON"]["predictedResult"]; 
+                      document.getElementById("codeFrame").src ="newWeb/a" + new Date().getTime(); 
+                  }
+            });        
+             sketchpad.clearAll();
+             sketchpad.drawStrokes();
+
+            
+
+        }
+        
+        // Handle events
+      document.addEventListener("mouseup", mouseup1);
+      document.addEventListener("touchend", mouseup1);
+      document.addEventListener("dblclick",doDoubleTap);
+      setTimeout(setcanvaswidth, 1000);
+      
+      function setcanvaswidth(){
+             var  canvasWidth = JSON.stringify(widthofSketchPad)
+          $.post("/SetCanvasSize/", {canvas_size: canvasWidth }, function(err, req, resp){
+            });   
+      }
+        
+      function undo() { 
+        sketchpad.undo();
+        mouseup1();
+        
+      }
+      function redo() {
+        sketchpad.redo();
+        mouseup1();
+      }
+      function color(event) {
+        sketchpad.color = $(event.target).val();
+      }
+      function size(event) {
+        sketchpad.penSize = $(event.target).val();
+      }
+      function animateSketchpad() {
+        sketchpad.animate(10);
+      }
+
+      function recover(event) {
+        var settings = sketchpad.toObject();
+        settings.element = '#other-sketchpad';
+        var otherSketchpad = new Sketchpad(settings);
+        $('#recover-button').hide();
+      }
+      
+      function save() {
+       
+         sketchpad.clearAll()
+             
+      }
+      
+      function restartGoal() {
+         sketchpad.clearAll();
+      }
+      
+      function erase() {
+         sketchpad.erase();
+
+      }      
+
+      function unerase() {
+         sketchpad.unerase();
+
+      }
+      
+
+       $(document).off(function() {
+
+      });
+      
+    </script>
+
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      try {
+        var pageTracker = _gat._getTracker("UA-59165581-1");
+        pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
+  </body>
+</html>

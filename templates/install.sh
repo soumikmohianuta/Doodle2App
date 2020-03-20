@@ -1,0 +1,1 @@
+adb install <output_apk_folder>/<project_name>-release.apk

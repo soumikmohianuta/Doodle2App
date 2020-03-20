@@ -1,0 +1,18 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_0</item>
+        <item name="colorPrimaryDark">@color/color_0</item>
+        <item name="colorAccent">@color/color_0</item>
+    </style>
+    <style name="CheckboxStyle" parent="AppTheme">
+        <item name="colorAccent">@color/color_1</item>  // for checked
+        <item name="android:textColorSecondary">@color/color_1</item>  // for unchecked
+    </style>
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/color_1</item>
+        <item name="colorControlActivated">@color/color_1</item>
+    </style>
+</resources>
